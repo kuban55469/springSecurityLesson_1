@@ -46,6 +46,7 @@ public class UserApi {
     @PostMapping("/{id}/update")
     public String updateUser(@PathVariable Long id,
                              @ModelAttribute("user") User user) {
+        userService.updateUser(id,user);
         return "redirect:/api/users";
     }
 //@GetMapping("/{email}/getUser")

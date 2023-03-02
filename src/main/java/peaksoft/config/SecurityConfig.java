@@ -42,7 +42,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.authorizeHttpRequests()
                 .requestMatchers("/api/users").hasAnyRole("ADMIN", "INSTRUCTOR", "STUDENT")
                 .requestMatchers("/api/users/new").hasRole("ADMIN")
                 .requestMatchers("/api/users/save").hasRole("ADMIN")
@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/users/{id}/delete").hasAnyRole("ADMIN", "INSTRUCTOR")
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/api/users")
                 .permitAll();
         return http.build();
     }
